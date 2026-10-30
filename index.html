@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b09">
+  <title>1er Novembre 1954 — Mémoire de l’Algérie</title>
+  <meta name="description" content="Cérémonie commémorative du 1er Novembre 1954.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+
+    :root {
+      --ink:#070b09; --ivory:#f0ece0; --gold:#bca36a;
+      --green:#006233; --red:#d21034; --duration:16s;
+    }
+    * { box-sizing:border-box; }
+    html, body { margin:0; min-height:100%; background:var(--ink); color:var(--ivory); }
+    body { font-family:"Cormorant Garamond", Georgia, serif; overflow:hidden; }
+    button, input { font:inherit; }
+    button { color:inherit; }
+    .grain { position:fixed; inset:0; z-index:20; pointer-events:none; opacity:.16; mix-blend-mode:soft-light;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); }
+
+    .ceremony { position:relative; min-height:100svh; overflow:hidden; isolation:isolate;
+      background:
+        radial-gradient(ellipse at 48% 75%, rgba(188,163,106,.16), transparent 34%),
+        linear-gradient(180deg, #040706 0%, #09140f 52%, #15150f 100%); }
+    .ceremony::before { content:""; position:absolute; inset:0; z-index:-1; opacity:.13;
+      background:repeating-linear-gradient(100deg, transparent 0 10vw, rgba(255,255,255,.035) 10.1vw 10.2vw); }
+    .sky-glow { position:absolute; left:-10%; right:-10%; bottom:12%; height:28%; opacity:.55;
+      background:radial-gradient(ellipse at center, rgba(209,180,109,.24), transparent 60%);
+      filter:blur(24px); animation:breathe 7s ease-in-out infinite alternate; }
+    .horizon { position:absolute; bottom:0; width:100%; height:25%; opacity:.68;
+      background:linear-gradient(to top, #020403 18%, transparent),
+        linear-gradient(166deg, transparent 51%, #060906 51.2% 61%, transparent 61.2%),
+        linear-gradient(194deg, transparent 46%, #050805 46.2% 68%, transparent 68.2%); }
+    .stars { position:absolute; inset:0; opacity:.45; background-image:
+      radial-gradient(circle at 14% 21%, #fff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 76% 17%, #fff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 86% 35%, #fff 0 1px, transparent 1.5px),
+      radial-gradient(circle at 38% 11%, #fff 0 .8px, transparent 1.2px),
+      radial-gradient(circle at 58% 27%, #fff 0 .8px, transparent 1.2px); }
+
+    .mast { position:absolute; left:clamp(13%, 24vw, 28%); bottom:7%; width:8px; height:75%; z-index:3;
+      background:linear-gradient(90deg,#403826,#e1d1a0 38%,#665a3d 72%,#1e1b13);
+      box-shadow:8px 10px 28px rgba(0,0,0,.5); border-radius:5px 5px 0 0; }
+    .finial { position:absolute; width:23px; height:23px; left:50%; top:-15px; transform:translateX(-50%) rotate(45deg);
+      border:1px solid #d9c489; background:linear-gradient(135deg,#887342,#efe0ac,#796234); }
+    .rope { position:absolute; left:11px; top:2px; height:97%; width:1px; background:rgba(222,207,164,.56); }
+    .base { position:absolute; width:78px; height:12px; bottom:-10px; left:50%; transform:translateX(-50%);
+      background:linear-gradient(90deg,#191910,#b2a06c,#242219); clip-path:polygon(8% 0,92% 0,100% 100%,0 100%); }
+
+    .flag-rig { --rise:0; position:absolute; left:calc(100% + 2px); bottom:calc(2% + var(--rise) * 79%);
+      width:min(42vw, 610px); aspect-ratio:610/401; transition:bottom var(--duration) cubic-bezier(.22,.64,.3,1); transform-origin:left top; }
+    .started .flag-rig { --rise:1; }
+    .flag { position:absolute; inset:0; overflow:visible; transform-origin:left center;
+      filter:drop-shadow(18px 22px 19px rgba(0,0,0,.38));
+      animation:flag-wave 3.2s ease-in-out infinite alternate; }
+    .flag img { display:block; width:50%; height:170%; object-fit:contain; }
+    .flag::after { content:""; position:absolute; inset:0; pointer-events:none; mix-blend-mode:multiply;
+      background:linear-gradient(96deg, transparent 3%, rgba(0,0,0,.12) 20%, rgba(255,255,255,.2) 38%, rgba(0,0,0,.2) 58%, rgba(255,255,255,.15) 78%, rgba(0,0,0,.24));
+      -webkit-mask:url("drapeau-algerien.png") center / 100% 100% no-repeat;
+      mask:url("drapeau-algerien.png") center / 100% 100% no-repeat;
+      animation:fabric-light 3.2s ease-in-out infinite alternate; }
+    .crease { position:absolute; inset:0; z-index:4; opacity:.22; mix-blend-mode:overlay; pointer-events:none;
+      background:repeating-linear-gradient(97deg, transparent 0 8%, #fff 11%, transparent 16%);
+      -webkit-mask:url("drapeau-algerien.png") center / 100% 100% no-repeat;
+      mask:url("drapeau-algerien.png") center / 100% 100% no-repeat; }
+
+    .date-mark { position:absolute; top:clamp(30px,6vh,72px); left:clamp(28px,6vw,90px); z-index:4; opacity:.78;
+      font-size:clamp(.73rem,.9vw,.86rem); letter-spacing:.28em; text-transform:uppercase; }
+    .date-mark::before { content:""; display:inline-block; width:42px; height:1px; margin-right:14px; vertical-align:middle; background:var(--gold); }
+    .sound-control { position:absolute; z-index:8; top:clamp(28px,5vh,60px); right:clamp(22px,5vw,70px); display:flex; gap:10px; align-items:center;
+      border:0; background:none; font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; cursor:pointer; opacity:.68; transition:opacity .3s; }
+    .sound-control:hover { opacity:1; }
+    .sound-icon { position:relative; display:flex; gap:3px; align-items:end; height:14px; }
+    .sound-icon i { width:1px; background:var(--gold); animation:equalize 1s ease-in-out infinite alternate; }
+    .sound-icon i:nth-child(1){height:5px}.sound-icon i:nth-child(2){height:13px;animation-delay:-.4s}.sound-icon i:nth-child(3){height:8px;animation-delay:-.7s}
+    .muted .sound-icon i { animation:none; height:2px; }
+
+    .tribute { position:absolute; z-index:5; right:clamp(30px,8vw,130px); bottom:clamp(36px,10vh,110px); width:min(42vw,600px); text-align:right;
+      opacity:0; transform:translateY(28px); pointer-events:none; transition:opacity 2s ease 13.5s, transform 2s ease 13.5s; }
+    .started .tribute { opacity:1; transform:none; }
+    .tribute .rule { width:64px; height:1px; background:var(--red); margin:0 0 24px auto; }
+    .tribute h1 { margin:0; font-weight:400; font-size:clamp(2.1rem,5vw,5.4rem); line-height:.88; letter-spacing:-.025em; text-wrap:balance; }
+    .tribute h1 span { display:block; margin-bottom:12px; font-family:"Amiri", serif; font-size:1.12em; direction:rtl; color:#fff; }
+    .tribute p { margin:25px 0 0 auto; max-width:530px; font-size:clamp(.95rem,1.35vw,1.25rem); line-height:1.55; color:rgba(240,236,224,.74); }
+    .tribute .arabic-copy { font-family:"Amiri",serif; direction:rtl; font-size:1.12em; }
+
+    .progress { position:absolute; z-index:7; left:0; bottom:0; width:100%; height:2px; background:rgba(255,255,255,.08); }
+    .progress span { display:block; width:0; height:100%; background:linear-gradient(90deg,var(--green),#eee,var(--red)); }
+    .started .progress span { width:100%; transition:width var(--duration) linear; }
+
+    .intro { position:fixed; inset:0; z-index:15; display:grid; place-items:center; padding:28px; background:
+      radial-gradient(ellipse at 50% 72%, rgba(123,106,57,.17), transparent 35%), rgba(3,6,5,.94);
+      transition:opacity 1.4s ease, visibility 1.4s; }
+    .intro.dismissed { opacity:0; visibility:hidden; pointer-events:none; }
+    .intro-card { position:relative; width:min(850px,100%); text-align:center; }
+    .intro-card::before,.intro-card::after { content:""; position:absolute; top:48%; width:clamp(20px,9vw,115px); height:1px; background:linear-gradient(90deg,transparent,var(--gold)); opacity:.5; }
+    .intro-card::before { left:0; }.intro-card::after { right:0; transform:scaleX(-1); }
+    .eyebrow { margin:0 0 28px; color:var(--gold); font-size:.7rem; letter-spacing:.36em; text-transform:uppercase; }
+    .intro h2 { margin:0; font-weight:400; font-size:clamp(3rem,9vw,8rem); letter-spacing:-.045em; line-height:.7; }
+    .intro h2 small { display:block; margin-top:30px; font-family:"Amiri",serif; font-size:.38em; line-height:1.2; color:rgba(255,255,255,.86); direction:rtl; letter-spacing:0; }
+    .intro-copy { max-width:510px; margin:38px auto 33px; color:rgba(240,236,224,.64); line-height:1.55; font-size:1rem; }
+    .start { position:relative; border:1px solid rgba(188,163,106,.55); background:transparent; padding:17px 28px; min-width:min(360px,100%); cursor:pointer; overflow:hidden;
+      letter-spacing:.13em; text-transform:uppercase; font-size:.72rem; transition:color .35s,border-color .35s; }
+    .start::before { content:""; position:absolute; inset:0; z-index:-1; background:var(--ivory); transform:translateX(-102%); transition:transform .45s cubic-bezier(.7,0,.3,1); }
+    .start:hover { color:var(--ink); border-color:var(--ivory); }.start:hover::before { transform:none; }
+    .start b { margin-left:8px; font-family:"Amiri",serif; font-size:1.05rem; font-weight:400; text-transform:none; letter-spacing:0; }
+    .audio-pick { display:block; margin:18px auto 0; padding:6px; border:0; background:none; cursor:pointer; color:rgba(240,236,224,.45); font-size:.72rem; letter-spacing:.08em; }
+    .audio-pick:hover { color:var(--gold); }.audio-ready { color:var(--gold); }
+    .intro-note { margin-top:28px; font-size:.63rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(240,236,224,.32); }
+
+    @keyframes flag-wave { 0%{transform:perspective(800px) rotateY(-2deg) skewY(-.7deg) scaleX(.985)} 50%{transform:perspective(800px) rotateY(5deg) skewY(.8deg) scaleX(1.01)} 100%{transform:perspective(800px) rotateY(-4deg) skewY(-1.2deg) scaleX(.97)} }
+    @keyframes fabric-light { from{transform:translateX(-4%) skewX(-2deg)} to{transform:translateX(5%) skewX(2deg)} }
+    @keyframes breathe { to{opacity:.85;transform:scale(1.08)} }
+    @keyframes equalize { from{transform:scaleY(.45)} to{transform:scaleY(1)} }
+
+    @media (max-width:720px) {
+      .mast { left:13%; height:69%; bottom:8%; width:6px; }
+      .flag-rig { width:min(76vw,430px); }
+      .tribute { width:72vw; right:7vw; bottom:9vh; }
+      .tribute h1 { font-size:clamp(2rem,9vw,3.6rem); }
+      .tribute p { font-size:.9rem; }.intro-card::before,.intro-card::after { display:none; }
+      .date-mark { top:25px; left:22px; }.sound-control { top:23px; right:18px; }.sound-control span:last-child { display:none; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.001ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; }
+      .flag-rig,.progress span,.tribute { transition-duration:1.5s!important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="ceremony" id="ceremony">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="sky-glow" aria-hidden="true"></div>
+    <div class="horizon" aria-hidden="true"></div>
+
+    <div class="date-mark">1 ·november· 1954</div>
+    <button class="sound-control muted" id="sound" type="button" aria-label="Activer ou couper le son">
+      <span class="sound-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span id="sound-label">Son désactivé</span>
+    </button>
+
+    <div class="mast" aria-label="Drapeau algérien montant sur son mât">
+      <span class="finial"></span><span class="rope"></span><span class="base"></span>
+      <div class="flag-rig">
+        <div class="flag">
+          <img src="2.png" alt="Drapeau algérien vert, blanc, avec le croissant et l’étoile rouges">
+          <span class="crease"></span>
+        </div>
+      </div>
+    </div>
+
+    <article class="tribute" aria-live="polite">
+      <div class="rule"></div>
+      <h1><span lang="ar">المجد والخلود لشهدائنا الأبرار</span>Gloire à nos martyrs</h1>
+      <p>À celles et ceux qui ont offert leur vie pour que l’Algérie se tienne libre et souveraine.</p>
+      <p class="arabic-copy" lang="ar">إلى الذين وهبوا أرواحهم لتبقى الجزائر حرة وسيدة.</p>
+    </article>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </main>
+  <section class="intro" id="intro" aria-labelledby="intro-title">
+    <div class="intro-card">
+      <p class="eyebrow">Mémoire · Liberté · Dignité</p>
+      <h2 id="intro-title">1<sup>er</sup> Novembre<br>1954<small lang="ar">أول نوفمبر 1954</small></h2>
+      <p class="intro-copy">Une cérémonie numérique en hommage à celles et ceux qui ont porté l’espoir d’une Algérie libre.</p>
+      <button class="start" id="start" type="button">Commencer la cérémonie <b lang="ar">ابدأ المراسم</b></button>
+      <button class="audio-pick" id="audio-pick" type="button">Ajouter « Kassaman » (MP3) — facultatif</button>
+      <p class="intro-note">La cérémonie dure environ seize secondes</p>
+    </div>
+  </section>
+  <audio id="anthem" preload="metadata" src="kassaman.mp3"></audio>
+  <input id="audio-file" type="file" accept="audio/mpeg,audio/mp3,audio/*" hidden>
+  <script>
+    const ceremony = document.querySelector('#ceremony');
+    const intro = document.querySelector('#intro');
+    const startButton = document.querySelector('#start');
+    const anthem = document.querySelector('#anthem');
+    const soundButton = document.querySelector('#sound');
+    const soundLabel = document.querySelector('#sound-label');
+    const pickerButton = document.querySelector('#audio-pick');
+    const fileInput = document.querySelector('#audio-file');
+    let audioLoaded = false;
+
+    function setSoundState(playing) {
+      soundButton.classList.toggle('muted', !playing);
+      soundLabel.textContent = playing ? 'Kassaman' : 'Son désactivé';
+      soundButton.setAttribute('aria-pressed', String(playing));
+    }
+
+    async function playAnthem() {
+      try {
+        await anthem.play();
+        setSoundState(true);
+      } catch (_) {
+        setSoundState(false);
+      }
+    }
+
+    startButton.addEventListener('click', () => {
+      intro.classList.add('dismissed');
+      ceremony.classList.add('started');
+      playAnthem();
+    });
+
+    soundButton.addEventListener('click', () => {
+      if (anthem.paused) playAnthem();
+      else { anthem.pause(); setSoundState(false); }
+    });
+
+    pickerButton.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      anthem.src = URL.createObjectURL(file);
+      anthem.load();
+      audioLoaded = true;
+      pickerButton.textContent = `Audio prêt · ${file.name}`;
+      pickerButton.classList.add('audio-ready');
+    });
+
+    anthem.addEventListener('ended', () => setSoundState(false));
+    anthem.addEventListener('canplay', () => {
+      if (!audioLoaded && anthem.currentSrc.includes('kassaman.mp3')) {
+        pickerButton.textContent = 'Kassaman est prêt';
+        pickerButton.classList.add('audio-ready');
+      }
+    }, { once:true });
+  </script>
+</body>
+</html>
